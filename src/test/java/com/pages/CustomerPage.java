@@ -119,6 +119,7 @@ public class CustomerPage {
 	}
 	
 	public void navigateToNewCustomer() {
+		utils.waitForElement(By.xpath("(//span[contains(text(),'New')])[1]"), Timer.long_secs);
 		utils.clickElementBy(By.xpath("(//span[contains(text(),'New')])[1]"));
 	}
 	
@@ -175,25 +176,53 @@ public class CustomerPage {
 	}
 
 	public void address(String address,String postalCode,String city) {
+		System.out.println("Address:"+address);
+		System.out.println("postalCode:"+postalCode);
+		System.out.println("City:"+city);
+		utils.waitForElementBy(By.xpath("//input[@name='A28']"), Timer.med_secs);
 		utils.clickElement(By.xpath("//input[@name='A28']"));
 		utils.sendKeysToElement(By.xpath("//input[@name='A28']"), address);
+		utils.waitForElementBy(By.xpath("//input[@name='A30']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//input[@name='A30']"));
+		utils.waitForElementBy(By.xpath("//input[@name='A30']"), Timer.med_secs);
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		utils.clickElement(By.xpath("//input[@name='A30']"));
+		//utils.clearField(By.xpath("//input[@name='A30']"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//utils.sendKeysToElement(By.xpath("//input[@name='A30']"), postalCode);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//utils.clickElement(By.xpath("//input[@name='A31']"));
 		utils.clickElement(By.xpath("//input[@name='A31']"));
-		utils.sendKeysToElement(By.xpath("//input[@name='A31']"),city );
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		utils.clickElement(By.xpath("//input[@name='A30']"));
-		utils.sendKeysToElement(By.xpath("//input[@name='A30']"), postalCode);
+		//utils.clickElement(By.xpath("//input[@name='A30']"));
+		utils.waitForElementBy(By.xpath("//span[contains(text(),'GEETBETS')]"), Timer.med_secs);
+		utils.clickElement(By.xpath("//span[contains(text(),'GEETBETS')]"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void saveBtn() {
@@ -220,18 +249,14 @@ public class CustomerPage {
 		finacial_tab.click();
 		
 	}
-	
-	
-	public void addIbanDetails() {
-		utils.clickElement(By.xpath("//div[@id='id_menu_3_valueCell4']/div"));
-		utils.clickElement(By.xpath("//input[@name='A94']"));
-		WebElement iban_option= wait.until(ExpectedConditions.visibilityOf(ibanOption));
-		iban_option.click();
-		WebElement account_number= wait.until(ExpectedConditions.visibilityOf(accountNumber));
-				account_number.click();
-				account_number.clear();
-				account_number.sendKeys("BE98519269216993");
-		saveBtn.click();
-	}
-}
 
+	public void addIbanDetails(String acc_number) {
+		utils.waitForElementByClick(By.xpath("//div[contains(text(),'Financial')]"), Timer.med_secs);
+		utils.clickElement(By.xpath("//div[contains(text(),'Financial')]"));
+		utils.waitForElementByClick(By.xpath("//div[@eventproxy='toolstrip_addBankAccount_1_5' and @role='button']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//div[@eventproxy='toolstrip_addBankAccount_1_5' and @role='button']"));
+		utils.waitForElement(By.xpath("//input[@class='silkTextItemInitialError' and @name='A2126']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//input[@class='silkTextItemInitialError' and @name='A2126']"));
+	}
+	
+}

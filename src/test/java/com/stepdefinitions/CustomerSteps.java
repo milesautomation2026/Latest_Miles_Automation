@@ -67,16 +67,14 @@ public class CustomerSteps {
 
     
     @When("user creates new customer profile")
-    public void newCustomerProfile() throws InterruptedException {
+    public void newCustomerProfile(List<String> data) throws InterruptedException {
     	customerPage = new CustomerPage(DriverFactory.driver);
     	customerPage.navigateToNewCustomer();
-    	customerPage.selectLegalEntity("Private Person");
-    	customerPage.name("kart1", "party");
-    	Thread.sleep(3000);
-    	customerPage.address("kumba","9000","GENT");
-    	Thread.sleep(3000);
+    	customerPage.selectLegalEntity(data.get(0));
+    	customerPage.name(data.get(1), data.get(2));
+    	customerPage.address(data.get(3),data.get(4),data.get(5));
     	customerPage.saveBtn();
-    	customerPage.addIbanDetails();
+    	customerPage.addIbanDetails(data.get(6));
     }
     
     @When("user enters")

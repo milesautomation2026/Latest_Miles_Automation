@@ -1,12 +1,12 @@
 package com.pages;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.utils.SeleniumUtils;
 import com.utils.Timer;
 
@@ -41,6 +41,12 @@ public class QuotePage {
  
 	public void selectQtnTemplate(String template) {
 		utils.waitForElement(qtnTemple, Timer.big_secs);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		utils.clickElement(qtnTemple);
 		utils.clearField(qtnTemple);
 		utils.sendKeysToElement(qtnTemple, template);
@@ -89,22 +95,131 @@ public class QuotePage {
 	}
 	
 	public void broker(String carbroker) {
+		utils.waitForElementByClick(broker, Timer.med_secs);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		utils.clickElement(broker);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		utils.sendKeysToElement(broker, carbroker);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		utils.clickElement(By.xpath("//div[contains(text(),'"+carbroker+"')]"));
 	}
 
 	public void durationAndDitance(String carduration, String cardistance) {
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		utils.clickElement(duration);
 		utils.sendKeysToElement(duration, carduration);
 		utils.clickElement(distance);
 		utils.sendKeysToElement(distance, cardistance);
 	}
 	
-	public void leaseService() {
+	public void leaseService(List<String> data) {
+		//catalog search 
 		utils.clickElement(leaseService);
-		//utils.waitForElementBy(searchOrAddCatalog, Timer.big_secs);
-		//utils.clickElement(searchOrAddCatalog);
-		//utils.sendKeysToElement(searchOrAddCatalog,catalog1 );
+		utils.waitForElementBy(searchOrAddCatalog, Timer.big_secs);
+		utils.clickElement(searchOrAddCatalog);
+		utils.sendKeysToElement(searchOrAddCatalog,data.get(0));
+		utils.waitForElementByClick(By.xpath("(//div[contains(text(),'55S')])[2]"), Timer.med_secs);
+		utils.clickElement(By.xpath("(//div[contains(text(),'55S')])[2]"));
+		// catalog search 2
+		utils.waitForElementBy(searchOrAddCatalog, Timer.big_secs);
+		utils.clickElement(searchOrAddCatalog);
+		utils.sendKeysToElement(searchOrAddCatalog,data.get(1));
+		utils.waitForElementByClick(By.xpath("(//div[contains(text(),'764F')])[2]"), Timer.med_secs);
+		utils.clickElement(By.xpath("(//div[contains(text(),'764F')])[2]"));
+
+		utils.clearField(By.xpath("//input[@name='quickSearchOption']"));
+		utils.waitForElementBy(searchOrAddCatalog, Timer.big_secs);
+		utils.clickElement(searchOrAddCatalog);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.sendKeysToElement(searchOrAddCatalog,data.get(2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementByClick(By.xpath("(//div[contains(text(),'JATO764F')])[2]"), Timer.med_secs);
+		utils.clickElement(By.xpath("(//div[contains(text(),'JATO764F')])[2]"));
+		utils.waitForElementByClick(By.xpath("//td[contains(text(),'OK')]"), Timer.med_secs);
+		utils.clickElementBy(By.xpath("//td[contains(text(),'OK')]"));
 	}
+	
+	public void quoteCreate() {
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementBy(By.xpath("//td[contains(@onfocus,'toolstrip_calculateSingleQuote')]//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//td[contains(@onfocus,'toolstrip_calculateSingleQuote')]//img[@class='ribbonButtonVIcon']"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementBy(By.xpath("//td[contains(@onfocus,'toolstrip_validateSingleQuote')]//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//td[contains(@onfocus,'toolstrip_validateSingleQuote')]//img[@class='ribbonButtonVIcon']"));
+		
+		//utils.waitForElement(By.xpath("//td[@onfocus='toolstrip_validateSingleQuote_6.$47()']//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		//utils.clickElementBy(By.xpath("//td[@onfocus='toolstrip_validateSingleQuote_6.$47()']//img[@class='ribbonButtonVIcon']"));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementBy(By.xpath("//td[contains(@onfocus,'toolstrip_approveSingleQuote')]//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//td[contains(@onfocus,'toolstrip_approveSingleQuote')]//img[@class='ribbonButtonVIcon']"));
+		
+		
+		//utils.waitForElementBy(By.xpath("//td[@onfocus='toolstrip_approveSingleQuote_6.$47()']//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		//utils.clickElement(By.xpath("//td[@onfocus='toolstrip_approveSingleQuote_6.$47()']//img[@class='ribbonButtonVIcon']"));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block  -> toolstrip_calculateSingleQuote_5.$47()
+			e.printStackTrace();
+		}
+		
+		utils.waitForElementBy(By.xpath("//td[contains(@onfocus,'toolstrip_generateContract')]//img[@class='ribbonButtonVIcon']"), Timer.med_secs);
+		utils.clickElement(By.xpath("//td[contains(@onfocus,'toolstrip_generateContract')]//img[@class='ribbonButtonVIcon']"));
+		
+		//utils.waitForElementBy(By.xpath("(//td[@class='ribbonButton']//img[@class='ribbonButtonVIcon'])[7]"), Timer.med_secs);
+		//utils.clickElement(By.xpath("(//td[@class='ribbonButton']//img[@class='ribbonButtonVIcon'])[7]"));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block  -> toolstrip_calculateSingleQuote_5.$47()
+			e.printStackTrace();
+		}
+	}
+	
 }

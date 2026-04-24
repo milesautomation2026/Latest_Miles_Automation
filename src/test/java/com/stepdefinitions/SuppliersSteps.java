@@ -2,6 +2,7 @@ package com.stepdefinitions;
 
 import com.pages.LoginPage;
 import com.pages.SuppliersPage;
+import com.sun.tools.javac.util.List;
 import com.utils.DriverFactory;
 import com.utils.PropertiesReader;
 import io.cucumber.java.en.Given;
@@ -24,20 +25,18 @@ public class SuppliersSteps {
         suppliersPage.navigateToNewCustomer();
     }
 
-
     @When("user creates new Supplier profile")
-    public void newCustomerProfile() {
+    public void newCustomerProfile(List<String> data) {
     	suppliersPage = new SuppliersPage(DriverFactory.driver);
-    	System.out.println("Before entering legal entity");
-    	suppliersPage.selectLegalEntity("NV");//Private Person
-    	System.out.println("After entering legal entity");
-    	suppliersPage.enterContactDetails();
-    	System.out.println("Entring into fincaial tab");
+    	//System.out.println("Before entering legal entity");
+    	suppliersPage.selectLegalEntity(data.getFirst());//Private Person
+    	//System.out.println("After entering legal entity");
+    	suppliersPage.enterContactDetails(data.get(1));
+    	//System.out.println("Entring into fincaial tab");
     	suppliersPage.navigateToFinancial();
-    	System.out.println("Entered into fincial tab");
-    	suppliersPage.addIban();
+    	//System.out.println("Entered into fincial tab");
+    	suppliersPage.addIban(data.get(2));
     	
     }
 
 }
-

@@ -6,3 +6,6 @@ Feature: Create Supplier Functionality
     And user should login successfully
 	When user navigates to suppliers page
 	And user creates new Supplier profile
+	| NV |
+	| RKPP Logistics |
+	| BE42878513883154 |

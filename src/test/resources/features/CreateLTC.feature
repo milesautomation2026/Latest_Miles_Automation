@@ -12,7 +12,7 @@ Feature: Create new LTC Functionality
     | CU KP   |
     And user navigates to quote page
     And select the quotation template and others field
-    | Operating lease |
+    | Finance lease |
     | Patil, DriverKP |
     And select the vehicle name, type and model
     | FORD  	 |
@@ -24,6 +24,8 @@ Feature: Create new LTC Functionality
     | 36    |
     | 12000 |
     And Add equipment and lease services
-    | s55   |
-    | 764F  |
+    | 		55S   	|
+    | 		764F  	|
+    |	JATO764F	|
+    And Calculate,Validate ,Approve and Contract
     

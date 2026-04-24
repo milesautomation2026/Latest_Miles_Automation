@@ -7,3 +7,12 @@ Feature: Create Customer Functionality
     And user should login successfully
 	When user navigates to customer page
 	And user creates new customer profile
+	|	Private Person	|
+	| 	Ronniom 		|
+	|	maririt			|
+	|	ABCCDGH			|
+	|	9000	|
+	|	GENT	|
+	|					 |
+	
+	

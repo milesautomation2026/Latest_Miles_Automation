@@ -39,15 +39,19 @@ public class QuoteSteps {
 
 	 @And("select broker,dealer and duration and distance")
 	 public void selectBrokerDealerDistanceDuration(List<String> data) {
-		 quotePage.broker(data.get(0));
+		 
+		 //quotePage.broker(data.get(0));
 		 //quotePage.selectDealer(data.get(1));
 		 quotePage.durationAndDitance(data.get(2), data.get(3));
 	 }
 
 	 @And("Add equipment and lease services")
-	 public void addLease() {
-		 quotePage.leaseService();;
-		// quotePage.
-		 
+	 public void addLease(List<String> data) {
+		 quotePage.leaseService(data);
+	 }
+	 
+	 @And("Calculate,Validate ,Approve and Contract")
+	 public void ApproveQuote() {
+		 quotePage.quoteCreate();
 	 }
 }

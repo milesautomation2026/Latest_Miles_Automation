@@ -59,9 +59,13 @@ public class SuppliersPage{
 	@FindBy(xpath="(//img[@class='ribbonButtonVIcon'])[1]")
 	private WebElement saveBtn;
 	
-	@FindBy(xpath ="//*[@id='id_menu_8_valueCell2']/div")
+	@FindBy(xpath ="(//div[contains(text(),'Financial')])[2]")
 	private WebElement Financial;
 	
+	@FindBy(xpath ="(//div[@eventproxy='toolstrip_addBankAccount_6'])[1]")
+	private WebElement AddIban;
+	
+	//div[contains(text(),'Financial')]
 	@FindBy(xpath="")
 	private WebElement TTradingName;
 	
@@ -90,31 +94,33 @@ public class SuppliersPage{
 		financial_tab.click();
 	}
 	
+	public void navigateToIban() {
+		WebElement add_iban = wait.until(ExpectedConditions.visibilityOf(addIban));
+		add_iban.click();
+	}
 	public void navigateToFind() {
 		findCustomer.click();
 	}
 
 	public void selectLegalEntity(String name) {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { Thread.sleep(2000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		WebElement legal_entite = wait.until(ExpectedConditions.visibilityOf(legalEntity));
 		legal_entite.click();
 		WebElement legal_option = wait.until(ExpectedConditions.visibilityOf(legalEntityOption1));
 		legal_option.click();
 	}
 
-	public void enterContactDetails() {
+	public void enterContactDetails(String company) {
 		WebElement trading_name = wait.until(ExpectedConditions.visibilityOf(tradingName));
 		trading_name.click();
-		trading_name.sendKeys("RRK Logistics");
+		trading_name.sendKeys(company);
 		saveBtn.click();
 	}
 	
-	public void addIban() {
+	public void addIban(String iban) {
 		System.out.println("Entering Iban ");
 		WebElement add_iban= wait.until(ExpectedConditions.visibilityOf(addIban));
 		add_iban.click();
@@ -124,7 +130,7 @@ public class SuppliersPage{
 		System.out.println("Entering Iban----3 ");
 		ibanadd.click();
 		ibanadd.clear();
-		ibanadd.sendKeys("BE42878513883154");
+		ibanadd.sendKeys(iban);
 		saveBtn.click();
 	}
 }
