@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import com.utils.SeleniumUtils;
 import com.utils.Timer;
 
@@ -60,14 +62,15 @@ public class QuotePage {
 	
 	public void selectDriver(String driverName) {
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//utils.waitForElementByClick(Driver, Timer.big_secs);
 		utils.clickElement(Driver);
-		utils.clickElement(By.xpath("//span[contains(text(),'"+driverName+"')]"));
+		utils.sendKeysToElement(Driver, driverName);  //ZAM, ZAM
+		utils.clickElement(By.xpath("//td[@class='tallCellSelected']/div/span[contains(text(),'"+driverName+"')]"));
 	}
 	
 	public void selectVehicleMake(String vehicle) {
@@ -133,8 +136,8 @@ public class QuotePage {
 		utils.sendKeysToElement(distance, cardistance);
 	}
 	
-	public void leaseService(List<String> data) {
-		//catalog search 
+	public void addEquipments(List<String> data) {
+		utils.waitForElementBy(leaseService, Timer.med_secs);
 		utils.clickElement(leaseService);
 		utils.waitForElementBy(searchOrAddCatalog, Timer.big_secs);
 		utils.clickElement(searchOrAddCatalog);
@@ -170,6 +173,27 @@ public class QuotePage {
 		utils.clickElementBy(By.xpath("//td[contains(text(),'OK')]"));
 	}
 	
+	
+	public void addLeaseServices() {
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementBy(By.xpath("//div[contains(text(),'Included Services')]//following::span[contains(text(),'Edit')]"), Timer.med_secs);
+		utils.clickElement(By.xpath("//div[contains(text(),'Included Services')]//following::span[contains(text(),'Edit')]"));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		utils.waitForElementBy(By.xpath("(//span[contains(@id,'isc_')]/following-sibling::span)[2]"), Timer.med_secs);
+		utils.clickElement(By.xpath("(//span[contains(@id,'isc_')]/following-sibling::span)[2]"));
+		utils.clickElement(By.xpath("//td[contains(text(),'OK')]"));
+		
+	}
 	public void quoteCreate() {
 		try {
 			Thread.sleep(20000);
@@ -220,6 +244,13 @@ public class QuotePage {
 			// TODO Auto-generated catch block  -> toolstrip_calculateSingleQuote_5.$47()
 			e.printStackTrace();
 		}
+		boolean contract_condition=utils.getPageTitle().contains(" is created");
+		System.out.println(" ->"+contract_condition);
+		Assert.assertTrue(contract_condition);
+	}
+
+	public void navigateToLTC() {
+		
 	}
 	
 }

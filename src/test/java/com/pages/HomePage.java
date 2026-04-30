@@ -199,6 +199,6 @@ public class HomePage {
 		utils.clearField(By.xpath("//span[contains(text(),'Trading Name')]/following::input[2]"));
 		Thread.sleep(7000);
 		utils.clickElement(By.xpath("//span[contains(text(),'Trading Name')]/following::input[2]"));
-		utils.sendKeysToElement(By.xpath("//span[contains(text(),'Trading Name')]/following::input[2]"),"%CU KP%");
+		utils.sendKeysToElement(By.xpath("//span[contains(text(),'Trading Name')]/following::input[2]"),customername);
 	}
 }

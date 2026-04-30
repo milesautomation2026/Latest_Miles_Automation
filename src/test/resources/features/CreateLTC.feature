@@ -5,15 +5,15 @@ Feature: Create new LTC Functionality
     And user enters valid credentials
     And user should login successfully
 	When user navigates to Customers page by quick navigation
-    | Custom          	  |
-    | %CU KP Breakfast%   |
+    | Custom   |
+    | Breakfastlogistics%   |
     And user searches existing customer
     Then user selects customer from the list
-    | CU KP   |
+    |  Breakfastlogistics%   |
     And user navigates to quote page
     And select the quotation template and others field
     | Finance lease |
-    | Patil, DriverKP |
+    | ZAM, ZAM |
     And select the vehicle name, type and model
     | FORD  	 |
     | MUSTANG 	 |
@@ -28,4 +28,5 @@ Feature: Create new LTC Functionality
     | 		764F  	|
     |	JATO764F	|
     And Calculate,Validate ,Approve and Contract
+    And navigate to created LTC
     

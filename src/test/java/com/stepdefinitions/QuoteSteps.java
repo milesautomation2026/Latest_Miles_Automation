@@ -47,11 +47,17 @@ public class QuoteSteps {
 
 	 @And("Add equipment and lease services")
 	 public void addLease(List<String> data) {
-		 quotePage.leaseService(data);
+		 quotePage.addEquipments(data);
+		 quotePage.addLeaseServices();
 	 }
 	 
 	 @And("Calculate,Validate ,Approve and Contract")
 	 public void ApproveQuote() {
 		 quotePage.quoteCreate();
+	 }
+	 
+	 @And("navigate to created LTC")
+	 public void navigateToLTC() {
+		 quotePage.navigateToLTC();
 	 }
 }
